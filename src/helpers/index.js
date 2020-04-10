@@ -103,7 +103,7 @@ export const estimateCasesForVentilators = ({ data, impact, severeImpact }) => {
 const calculateLostIncomeOverTime = (income, population, duration, estimate) => {
   const { infectionsByRequestedTime } = estimate;
   const lostIncome = (infectionsByRequestedTime * income * population) / duration;
-  return Number(lostIncome.toFixed(2));
+  return Math.trunc(lostIncome);
 };
 
 
