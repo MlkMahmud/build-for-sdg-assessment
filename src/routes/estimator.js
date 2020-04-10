@@ -1,11 +1,9 @@
 import { Router } from 'express';
-import responseTime from 'response-time';
 import validateDataObject from '../middleware/validateDataObject';
 import { estimateCovid19Impact } from '../controllers/estimator';
 
 
 const router = Router();
-router.use(responseTime());
 
 router.post('/', validateDataObject, (request, response) => {
   try {
