@@ -3,9 +3,9 @@ import validateDataObject from '../middleware/validateDataObject';
 import { estimateCovid19Impact } from '../controllers/estimator';
 
 
-const router = new Router();
+const router = Router();
 
-router.route('/', validateDataObject, (request, response) => {
+router.post('/', validateDataObject, (request, response) => {
   try {
     const estimate = estimateCovid19Impact(request.body);
     response.json(estimate);
