@@ -5,7 +5,10 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "lint": "eslint ./src/"
+    "build": "babel src --out-dir lib",
+    "dev": "babel-node src/server",
+    "lint": "eslint ./src/",
+    "start": "node lib/server"
   },
   "dependencies": {
     "cors": "^2.8.5",
