@@ -17,7 +17,7 @@ export const estimateCovid19Impact = (req, res) => {
         return res.json(data);
       case 'xml':
         return res
-          .type('text/xml')
+          .type('application/xml')
           .send(xmlData);
       default:
         return res
