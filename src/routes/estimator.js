@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import validateDataObject from '../middleware/validateDataObject';
-import { estimateCovid19Impact } from '../controllers/estimator';
+import {
+  estimateCovid19Impact,
+  getRequestLogs
+} from '../controllers/estimator';
 
 
 const router = Router();
@@ -15,6 +18,9 @@ router.post('/', validateDataObject, (request, response) => {
       .json({ message });
   }
 });
+
+
+router.get('/logs', getRequestLogs);
 
 
 export default router;
