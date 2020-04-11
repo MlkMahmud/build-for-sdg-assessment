@@ -1,3 +1,6 @@
+import Schema from 'validate';
+
+
 const WEEK_LENGTH = 7;
 const MONTH_LENGTH = 30;
 
@@ -122,5 +125,42 @@ export const estimateDollarsInFlight = ({ data, impact, severeImpact } = {}) => 
     data,
     impact,
     severeImpact
+  };
+};
+
+
+const dataSchema = new Schema({
+  region: {
+    name: { type: String, required: true },
+    avgAge: { type: Number, required: true },
+    avgDailyIncomeInUSD: { type: Number, required: true },
+    avgDailyIncomePopulation: { type: Number, required: true }
+  },
+
+  periodType: {
+    type: String,
+    enum: ['days', 'weeks', 'months'],
+    required: true
+  },
+  timeToElapse: { type: Number, required: true },
+  reportedCases: { type: Number, required: true },
+  population: { type: Number, required: true },
+  totalHospitalBeds: { type: Number, required: true }
+});
+
+
+export const validateDataObject = (data) => {
+  const [error] = dataSchema.validate(data);
+
+  if (error) {
+    return {
+      valid: false,
+      error: error.message
+    };
+  }
+
+  return {
+    valid: true,
+    error: null
   };
 };
