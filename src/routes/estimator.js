@@ -8,10 +8,11 @@ import {
 
 const router = Router();
 
-router.post('/', validateDataObject, estimateCovid19Impact);
-
 
 router.get('/logs', getRequestLogs);
+
+
+router.post('/:format?', validateDataObject, estimateCovid19Impact);
 
 
 export default router;
