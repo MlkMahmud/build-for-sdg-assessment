@@ -3,7 +3,16 @@ import { join } from 'path';
 import covid19ImpactEstimator from '../estimator';
 
 
-export const estimateCovid19Impact = (data) => (covid19ImpactEstimator(data));
+export const estimateCovid19Impact = (req, res) => {
+  try {
+    const data = covid19ImpactEstimator(req.body);
+    res.json(data);
+  } catch ({ message }) {
+    res
+      .status(500)
+      .json({ message });
+  }
+};
 
 
 export const getRequestLogs = (req, res) => {

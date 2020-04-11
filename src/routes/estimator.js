@@ -8,16 +8,7 @@ import {
 
 const router = Router();
 
-router.post('/', validateDataObject, (request, response) => {
-  try {
-    const estimate = estimateCovid19Impact(request.body);
-    response.json(estimate);
-  } catch ({ message }) {
-    response
-      .status(500)
-      .json({ message });
-  }
-});
+router.post('/', validateDataObject, estimateCovid19Impact);
 
 
 router.get('/logs', getRequestLogs);
